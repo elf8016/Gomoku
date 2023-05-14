@@ -43,3 +43,4 @@ def generateans() :
 
 genans = generateans()
 game(genans)
+#鮑魚
