@@ -40,6 +40,5 @@ def generateans() :
             c=''
             continue
     return c
-
 genans = generateans()
 game(genans)
