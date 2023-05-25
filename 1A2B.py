@@ -1,51 +1,62 @@
-from random import randint
-def game(ans) :
-    C = 0
-    print("Welcome to 1A2B, Type 'Give up' to quit")
-    while C == 0  :
-        A = 0
-        B = 0 
-        guess = input("\033[37mInput 4 num : ") 
-        setguess = set(guess)            
-        if str.isdigit(guess) == False : 
-            print('\033[31merror!! 4 !num! plz',)
+import random
+
+
+def get_answer() -> str:
+    answer_list = []
+    num_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    random.shuffle(num_list)
+    answer_list.append(num_list.pop())
+    num_list.append(0)
+    answer_list.extend(random.sample(num_list, 3))
+    answer_strlist = [str(x) for x in answer_list]
+    answer = "".join(answer_strlist)
+    return answer
+
+
+def check_Input(guess: str) -> bool:
+    if (
+        str.isdigit(guess) == False
+        or len(guess) != 4
+        or guess[0] == "0"
+        or len(set(guess)) != 4
+    ):
+        return False
+
+
+def check_ans(ans: str, guess: str) -> list:
+    AB = [0] * 2
+    for i in range(0, 4):
+        for j in range(0, 4):
+            if ans[i] == guess[j]:
+                if i == j:
+                    AB[0] += 1
+                else:
+                    AB[1] += 1
+    if AB[0] == 4:
+        print("YOU WON !!")
+        quit()
+    else:
+        return AB
+
+
+def interactive() -> str:
+    while True:
+        guess = input("\n\033[37mInput 4 num : ")
+        if check_Input(guess) == False:
+            print("\033[31mError!")
             continue
-        if len(guess) != 4 :
-            print('\033[31merror!! !4! num plz',)
-            continue
-        if guess[0] == '0' :
-            print('\033[31merror!! first num cannot be 0',)
-            continue
-        if ans == 'Give up' :
-            C = C + 1
-            continue
-        if len(setguess) != len(guess) :
-            print("\033[37mInput 4 !different! num : ")
-            continue
-        for i  in range(0,4) :
-            for j in range(0,4):
-                if ans[i] == guess[j] :
-                    if i == j :
-                        A = A + 1
-                    else : 
-                        B = B + 1
-        if A == 4 :
-            print("Won!!")
-            C = C + 1
-        else : 
-            print("\033[37m",A,'A',B,'B, Try again!!',sep="")
-def generateans() : 
-    c = ''
-    while len(c) < 4 : 
-        b = randint(0,9)
-        if len(c) == 0 and  b == 0 :
-            if b == 0 :
-                continue
-        c = c + str(b)
-        setc = set(c)
-        if len(c) != len(setc) :
-            c=''
-            continue
-    return c
-genans = generateans()
-game(genans)
+        else:
+            return guess
+
+
+if __name__ == "__main__":
+    print(
+        "Welcome to 1A2B\n1. Type 4 num\n2. First one connot be 0\n3.  Repeated num not allowed"
+    )
+    ans = get_answer()
+    print(ans)
+    while True:
+        guess = interactive()
+        print(guess)
+        print("\033[37m{}A{}B Try again!!".format(*check_ans(ans, guess)))
+
