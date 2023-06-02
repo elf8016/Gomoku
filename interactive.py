@@ -3,7 +3,7 @@ import variable
 
 
 def init() -> List[int]:
-    variable.chessboard = [[1 for i in range(0, 11)] for j in range(0, 11)]
+    variable.chessboard = [[0 for i in range(0, 11)] for j in range(0, 11)]
     variable.track = []
     # global track
     # global chessboard
