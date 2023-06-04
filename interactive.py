@@ -22,7 +22,7 @@ def show(bb):
                     print("+")
             if bb[i][j] == 1:
                 if j < 10:
-                    print("\033[31mO", end=" ")
+                    print("\033[31mO"+"\033[0m", end=" ") #重置顏色
                 else:
                     print("\033[31mO")
             if bb[i][j] == 2:
