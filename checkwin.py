@@ -1,145 +1,134 @@
 import variable
 import interactive
+import variable
 
 
-def checkwin (list,point):
+def checkwin(point):
     y = 0
     x = 0
     player = 0
     times = 1
-    point = list(map(int, point))
-    y = point[0]
-    x = point[1]
-    player = list[point]
+    y = int(point[0])
+    x = int(point[1])
+    player = variable.chessboard[y][x]
 
     # 右
-    for i in range(1,5):
+    for i in range(1, 5):
         x = x + 1
-        if list[y][x] == player and x <= 11:
+        if x < 11 and variable.chessboard[y][x] == player:
             times += 1
         else:
             break
 
-    #讓 x,y ＝ 原來的點
-    y = point[0]
-    x = point[1]
+    # 讓 x,y ＝ 原來的點
+    y = int(point[0])
+    x = int(point[1])
 
-    #左
-    for i in range(1,5):
+    # 左
+    for i in range(1, 5):
         x = x - 1
-        if list[y][x] == player and x >= 0:
+        if x >= 0 and variable.chessboard[y][x] == player:
             times += 1
         else:
             break
 
     if times == 5:
-        return(player,2,point)
+        return 2
     else:
-        #讓 x,y ＝ 原來的點
-        y = point[0]
-        x = point[1]
+        # 讓 x,y ＝ 原來的點
+        y = int(point[0])
+        x = int(point[1])
         times = 1
 
-    #上
-    for i in range(1,5):
+    # 上
+    for i in range(1, 5):
         y = y - 1
-        if list[y][x] == player and y >= 0:
+        if y >= 0 and variable.chessboard[y][x] == player:
             times += 1
         else:
             break
 
-    #讓 x,y ＝ 原來的點
-    y = point[0]
-    x = point[1]
+    # 讓 x,y ＝ 原來的點
+    y = int(point[0])
+    x = int(point[1])
 
     # 下
-    for i in range(1,5):
+    for i in range(1, 5):
         y = y + 1
-        if list[y][x] == player and y <= 11:
+        if y < 11 and variable.chessboard[y][x] == player:
             times += 1
         else:
             break
 
     if times == 5:
-        return(player,1,point)
+        return 1
     else:
-        #讓 x,y ＝ 原來的點
-        y = point[0]
-        x = point[1]
+        # 讓 x,y ＝ 原來的點
+        y = int(point[0])
+        x = int(point[1])
         times = 1
-    
-    #右上
-    for i in range(1,5):
+
+    # 右上
+    for i in range(1, 5):
         x = x + 1
         y = y - 1
-        if list[y][x] == player and x <= 11 and y >= 0:
+        if x < 11 and y >= 0 and variable.chessboard[y][x] == player:
             times += 1
         else:
             break
 
-    #讓 x,y ＝ 原來的點
-    y = point[0]
-    x = point[1]
+    # 讓 x,y ＝ 原來的點
+    y = int(point[0])
+    x = int(point[1])
 
-    #左下
-    for i in range(1,5):
+    # 左下
+    for i in range(1, 5):
         x = x - 1
         y = y + 1
-        if list[y][x] == player and x >= 0 and y <= 11:
+        if x >= 0 and y < 11 and variable.chessboard[y][x] == player:
             times += 1
         else:
             break
 
     if times == 5:
-        return(player,4,point)
+        return 4
     else:
-        #讓 x,y ＝ 原來的點
-        y = point[0]
-        x = point[1]
+        # 讓 x,y ＝ 原來的點
+        y = int(point[0])
+        x = int(point[1])
         times = 1
-    
-    #右下
-    for i in range(1,5):
+
+    # 右下
+    for i in range(1, 5):
         x = x + 1
         y = y + 1
-        if list[y][x] == player and x <= 11 and y <= 11:
+        if x < 11 and y < 11 and variable.chessboard[y][x] == player:
             times += 1
         else:
             break
 
-    #讓 x,y ＝ 原來的點
-    y = point[0]
-    x = point[1]
+    # 讓 x,y ＝ 原來的點
+    y = int(point[0])
+    x = int(point[1])
 
-    #左上
-    for i in range(1,5):
+    # 左上
+    for i in range(1, 5):
         x = x - 1
         y = y - 1
-        if list[y][x] == player and x >= 0 and y >= 0:
+        if x >= 0 and y >= 0 and variable.chessboard[y][x] == player:
             times += 1
         else:
             break
     if times == 5:
-        return(player,3,point)
+        return 3
     else:
-        return(0,0,point)
+        return 0
 
-
-
-
-
-
-
-
-
-
-
-
-##if __name__ == "__main__":
+    ##if __name__ == "__main__":
     interactive.init()
-    list1 = variable.chessboard
-    #checkwin(list1,list2)
-    #print (list1)
-    print(list1)
-    print(list1)
-    #print(interactive.show(list1))
+    variable.chessboard1 = variable.chessboard
+    # checkwin(variable.chessboard1,variable.chessboard2)
+    # print (variable.chessboard1)
+    print(variable.chessboard1)
+    print(variable.chessboard1)
+    # print(interactive.show(variable.chessboard1))

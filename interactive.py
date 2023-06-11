@@ -13,8 +13,8 @@ def init() -> List[int]:
 
 def show(bb):
     print("\033[2J")
-    for i in range(0,11):
-        for j in range(0,11):
+    for i in range(0, 11):
+        for j in range(0, 11):
             if bb[i][j] == 0:
                 if j < 10:
                     print("+", end=" ")
@@ -22,18 +22,18 @@ def show(bb):
                     print("+")
             if bb[i][j] == 1:
                 if j < 10:
-                    print("\033[31mO"+"\033[0m", end=" ") #重置顏色
+                    print("\033[31mO" + "\033[0m", end=" ")  # 重置顏色
                 else:
-                    print("\033[31mO")
+                    print("\033[31mO" + "\033[0m")
             if bb[i][j] == 2:
                 if j < 10:
-                    print("O", end=" ")
+                    print("\033[34mO" + "\033[0m", end=" ")
                 else:
-                    print("O")
+                    print("\033[34O" + "\033[0m")
 
 
-if __name__ == "__main__":
-    init()
-    # print(chessboard)
-    # print(track)
-    show(variable.chessboard)
+# if __name__ == "__main__":
+#     init()
+#     # print(chessboard)
+#     # print(track)
+#     show(variable.chessboard)

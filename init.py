@@ -1,7 +1,7 @@
 from typing import List
 
 
-def init() -> List[str]:
+def initchessboard() -> List[str]:
     global chessboard
     chessboard = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
