@@ -17,4 +17,4 @@ def init() -> List[str]:
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
     global track
-    track = [1,2]
+    track = []
