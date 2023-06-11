@@ -2,6 +2,7 @@ from typing import List
 from interactive import show
 import variable
 import time
+import os
 
 # track = [["1", "3"], ["3", "5"], ["4", "7"], ["7", "10"], ["3", "7"]]
 
@@ -18,11 +19,13 @@ def review(track_record: List[str]) -> None:
 
         if i % 2 == 0:
             variable.chessboard[index1][index2] = 1
+            os.system("clear")
             show(variable.chessboard)
             time.sleep(3)
 
         if i % 2 == 1:
             variable.chessboard[index1][index2] = 2
+            os.system("clear")
             show(variable.chessboard)
             time.sleep(3)
 

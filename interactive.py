@@ -29,7 +29,7 @@ def show(bb):
                 if j < 10:
                     print("\033[34mO" + "\033[0m", end=" ")
                 else:
-                    print("\033[34O" + "\033[0m")
+                    print("\033[34mO" + "\033[0m")
 
 
 # if __name__ == "__main__":

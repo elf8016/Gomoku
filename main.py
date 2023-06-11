@@ -28,11 +28,11 @@ if __name__ == "__main__":
         interactive.show(variable.chessboard)
         if checkwin.checkwin(input_list) == 0:
             continue
-        replay = input("Review or no (Y/N)")
+        replay = input("Review or no (Y/N): ")
         if replay == 'Y' or replay == 'y':
             os.system("clear")
             review.review(variable.track)
-        again = input("Play again? (Y/N)")
+        again = input("Play again? (Y/N): ")
         if again == 'Y'or again == 'y':
             os.system("clear")
             interactive.init()
