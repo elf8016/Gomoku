@@ -45,7 +45,7 @@ def screen_change():
 
 def screen_back():
     current_font, current_font_size = split_string(get_terminal_font())
-    set_size = "10"
+    set_size = "16"
     os.system(
         "gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ font '{}'".format(
             current_font + " " + set_size
