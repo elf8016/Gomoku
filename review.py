@@ -1,5 +1,5 @@
 from typing import List
-from interactive import show
+import interactive
 import variable
 import time
 import os
