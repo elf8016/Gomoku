@@ -2,6 +2,7 @@ import variable
 from typing import List
 import os
 import screen_change
+import getpass
 
 outside_row = "\x1b[47;37m      —————————————————————————————————————————     ———————————————————————————————————————     ———————————————————————————————————————     ———————————————————————————————————————     ———————————————————————————————————————     ———————————————————————————————————————     ———————————————————————————————————————     ———————————————————————————————————————     ———————————————————————————————————————     ———————————————————————————————————————                            \x1b[0m"
 outside_column = "\x1b[47;37m    \x1b[0m"
@@ -80,7 +81,7 @@ type3_col_dirt = {
     8: 323,
     9: 367,
 }
-
+num_address = {1: 610, 2: 640, 3: 670, 4: 700, 5: 730}
 
 def print_at_position(text, row, column):
     command = f"printf '\\033[{row};{column}H{text}'"
@@ -91,11 +92,11 @@ def init():
     variable.chessboard = [[0 for i in range(0, 11)] for j in range(0, 11)]
     variable.track = []
     variable.count=0
-    screen_change.screen_change()
     show_table()
 
 
 def show_table():
+    screen_change.screen_change()
     print("\x1bc")
     print(outside_row)
     print(outside_row)
@@ -715,3 +716,302 @@ def print_line(winner, type, position):
         print_at_position(
             "\x1b[43;33m■■■■■■\x1b[0m", position[0] - 37, position[1] + 93
         )
+
+def print_1(type,add):
+    if type==1:
+        color="\x1b[41;31m"
+    elif type==2:
+        color="\x1b[44;34m"
+    elif type==3:
+        color="\x1b[8m"
+    add = num_address[add]
+    for i in range(add - 4, add):
+        print_at_position(color+"   \x1b[0m", 2, i)
+    for i in range(add - 7, add+7):
+        print_at_position(color+"   \x1b[0m", 19, i)
+    for i in range(2, 20):
+        print_at_position(color+"   \x1b[0m", i, add)
+
+def print_2(type,add):
+    if type==1:
+        color="\x1b[41;31m"
+    elif type==2:
+        color="\x1b[44;34m"
+    elif type==3:
+        color="\x1b[8m"
+    add = num_address[add]
+    for i in range(2, 11):
+        print_at_position(color+"   \x1b[0m", i, add+8)
+    for i in range(11, 20):
+        print_at_position(color+"   \x1b[0m", i, add-6)
+    for i in range(add-6,add+9):
+        print_at_position(color+"   \x1b[0m", 2, i)
+        print_at_position(color+"   \x1b[0m", 11, i)
+        print_at_position(color+"   \x1b[0m", 19, i)
+
+def print_3(type,add):
+    if type==1:
+        color="\x1b[41;31m"
+    elif type==2:
+        color="\x1b[44;34m"
+    elif type==3:
+        color="\x1b[8m"
+    add = num_address[add]
+    for i in range(add-6,add+9):
+        print_at_position(color+"   \x1b[0m", 2, i)    
+        print_at_position(color+"   \x1b[0m", 11, i)    
+        print_at_position(color+"   \x1b[0m", 19, i)
+    for i in range(2,20):
+        print_at_position(color+"   \x1b[0m", i, add+8)
+
+def print_4(type,add):
+    if type==1:
+        color="\x1b[41;31m"
+    elif type==2:
+        color="\x1b[44;34m"
+    elif type==3:
+        color="\x1b[8m"
+    add = num_address[add]
+    for i in range(2,20):
+        print_at_position(color+"   \x1b[0m", i, add+8)
+    for i in range(2,12):
+        print_at_position(color+"   \x1b[0m", i, add-6)
+    for i in range(add-6,add+9):
+        print_at_position(color+"   \x1b[0m", 11, i)
+    
+def print_5(type,add):
+    if type==1:
+        color="\x1b[41;31m"
+    elif type==2:
+        color="\x1b[44;34m"
+    elif type==3:
+        color="\x1b[8m"
+    add = num_address[add]
+    for i in range(2, 11):
+        print_at_position(color+"   \x1b[0m", i, add-6)
+    for i in range(11, 20):
+        print_at_position(color+"   \x1b[0m", i, add+8)
+    for i in range(add-6,add+9):
+        print_at_position(color+"   \x1b[0m", 2, i)
+        print_at_position(color+"   \x1b[0m", 11, i)
+        print_at_position(color+"   \x1b[0m", 19, i)
+
+def print_6(type,add):
+    if type==1:
+        color="\x1b[41;31m"
+    elif type==2:
+        color="\x1b[44;34m"
+    elif type==3:
+        color="\x1b[8m"
+    add = num_address[add]
+    for i in range(2, 20):
+        print_at_position(color+"   \x1b[0m", i, add-6)
+    for i in range(11, 20):
+        print_at_position(color+"   \x1b[0m", i, add+8)
+    for i in range(add-6,add+9):
+        print_at_position(color+"   \x1b[0m", 2, i)
+        print_at_position(color+"   \x1b[0m", 11, i)
+        print_at_position(color+"   \x1b[0m", 19, i)
+
+def print_7(type,add):
+    if type==1:
+        color="\x1b[41;31m"
+    elif type==2:
+        color="\x1b[44;34m"
+    elif type==3:
+        color="\x1b[8m"
+    add = num_address[add]
+    for i in range(2, 20):
+        print_at_position(color+"   \x1b[0m", i, add+8)
+    for i in range(add-6,add+9):
+        print_at_position(color+"   \x1b[0m", 2, i)
+
+def print_8(type,add):
+    if type==1:
+        color="\x1b[41;31m"
+    elif type==2:
+        color="\x1b[44;34m"
+    elif type==3:
+        color="\x1b[8m"
+    add = num_address[add]
+    for i in range(2, 20):
+        print_at_position(color+"   \x1b[0m", i, add-6)
+    for i in range(2, 20):
+        print_at_position(color+"   \x1b[0m", i, add+8)
+    for i in range(add-6,add+9):
+        print_at_position(color+"   \x1b[0m", 2, i)
+        print_at_position(color+"   \x1b[0m", 11, i)
+        print_at_position(color+"   \x1b[0m", 19, i)
+
+def print_9(type,add):
+    if type==1:
+        color="\x1b[41;31m"
+    elif type==2:
+        color="\x1b[44;34m"
+    elif type==3:
+        color="\x1b[8m"
+    add = num_address[add]
+    for i in range(2, 12):
+        print_at_position(color+"   \x1b[0m", i, add-6)
+    for i in range(2, 20):
+        print_at_position(color+"   \x1b[0m", i, add+8)
+    for i in range(add-6,add+9):
+        print_at_position(color+"   \x1b[0m", 2, i)
+        print_at_position(color+"   \x1b[0m", 11, i)
+        print_at_position(color+"   \x1b[0m", 19, i)
+
+def print_0(type,add):
+    if type==1:
+        color="\x1b[41;31m"
+    elif type==2:
+        color="\x1b[44;34m"
+    elif type==3:
+        color="\x1b[8m"
+    add = num_address[add]
+    for i in range(2, 20):
+        print_at_position(color+"   \x1b[0m", i, add-6)
+    for i in range(2, 20):
+        print_at_position(color+"   \x1b[0m", i, add+8)
+    for i in range(add-6,add+9):
+        print_at_position(color+"   \x1b[0m", 2, i)
+        print_at_position(color+"   \x1b[0m", 19, i)
+
+def print_dit(type,add):
+    if type==1:
+        color="\x1b[41;31m"
+    elif type==2:
+        color="\x1b[44;34m"
+    elif type==3:
+        color="\x1b[8m"
+    add = num_address[add]
+    for i in range(add,add+3):
+        print_at_position(color+"   \x1b[0m", 20, i)
+        print_at_position(color+"   \x1b[0m", 19, i)
+    for i in range(21,22):
+        print_at_position(color+"  \x1b[0m", i, add+3)
+
+def show_input(player):
+    num1=getpass.getpass(prompt="", stream=None)
+    if int(num1)==1:
+        print_1(player,1)
+        print_dit(player,2)
+    elif int(num1)==2:
+        print_2(player,1)
+        print_dit(player,2)
+    elif int(num1)==3:
+        print_3(player,1)
+        print_dit(player,2)
+    elif int(num1)==4:
+        print_4(player,1)
+        print_dit(player,2)
+    elif int(num1)==5:
+        print_5(player,1)
+        print_dit(player,2)
+    elif int(num1)==6:
+        print_6(player,1)
+        print_dit(player,2)
+    elif int(num1)==7:
+        print_7(player,1)
+        print_dit(player,2)
+    elif int(num1)==8:
+        print_8(player,1)
+        print_dit(player,2)
+    elif int(num1)==9:
+        print_9(player,1)
+        print_dit(player,2)
+    elif int(num1)==10:
+        print_1(player,1)
+        print_0(player,2)
+        print_dit(player,3)
+    elif int(num1)==11:
+        print_1(player,1)
+        print_1(player,2)
+        print_dit(player,3)
+    num2=getpass.getpass(prompt="", stream=None)
+    if int(num2)==1:
+        if int(num1)<10:
+            print_1(player,3)
+        elif int(num1)>=10:
+            print_1(player,4)
+    elif int(num2)==2:
+        if int(num1)<10:
+            print_2(player,3)
+        elif int(num1)>=10:
+            print_2(player,4)
+    elif int(num2)==3:
+        if int(num1)<10:
+            print_3(player,3)
+        elif int(num1)>=10:
+            print_3(player,4)
+    elif int(num2)==4:
+        if int(num1)<10:
+            print_4(player,3)
+        elif int(num1)>=10:
+            print_4(player,4)
+    elif int(num2)==5:
+        if int(num1)<10:
+            print_5(player,3)
+        elif int(num1)>=10:
+            print_5(player,4)
+    elif int(num2)==6:
+        if int(num1)<10:
+            print_6(player,3)
+        elif int(num1)>=10:
+            print_6(player,4)
+    elif int(num2)==7:
+        if int(num1)<10:
+            print_7(player,3)
+        elif int(num1)>=10:
+            print_7(player,4)
+    elif int(num2)==8:
+        if int(num1)<10:
+            print_8(player,3)
+        elif int(num1)>=10:
+            print_8(player,4)
+    elif int(num2)==9:
+        if int(num1)<10:
+            print_9(player,3)
+        elif int(num1)>=10:
+            print_9(player,4)
+    elif int(num2)==10:
+        if int(num1)<10:
+            print_1(player,3)
+            print_0(player,4)
+        elif int(num1)>=10:
+            print_1(player,4)
+            print_0(player,5)
+    elif int(num2)==11:
+        if int(num1)<10:
+            print_1(player,3)
+            print_1(player,4)
+        elif int(num1)>=10:
+            print_1(player,4)
+            print_1(player,5)
+    
+    return num1,num2
+
+def print_review(): #True=>review  False=>go to replay
+    print("\x1bc") #畫面清空
+    screen_change.screen_back()
+    while True:
+        ans=input("\x1b[0;0HDO YOU WNT TO REVIEW?(Y/N):\n")
+        if ans == "Y" or ans == "y":
+            return True
+        elif ans == "N" or ans == "n":
+            return False
+        else:
+            print("\x1bc") #畫面清空
+            continue
+
+def print_replay(): #True=>replay  False=>end game
+    print("\x1bc") #畫面清空
+    screen_change.screen_back()
+    while True:
+        ans=input("\x1b[0;0HDO YOU WNT TO REPLAY?(Y/N):\n")
+        if ans == "Y" or ans == "y":
+            return True
+        elif ans == "N" or ans == "n":
+            return False
+        else:
+            print("\x1bc") #畫面清空
+            continue
