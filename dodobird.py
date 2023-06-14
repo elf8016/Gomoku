@@ -31,5 +31,4 @@ def checkinput(list1: list):
     else:
         return True
 
-
 # 2nd version
