@@ -1,4 +1,3 @@
-import init
 import variable
 
 
@@ -30,5 +29,6 @@ def checkinput(list1: list):
         return False
     else:
         return True
+
 
 # 2nd version
