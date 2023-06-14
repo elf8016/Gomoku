@@ -1,134 +1,157 @@
 import variable
 import interactive
-import variable
 
 
-def checkwin(point):
+def checkwin (list,point):
     y = 0
     x = 0
     player = 0
     times = 1
-    y = int(point[0])
-    x = int(point[1])
-    player = variable.chessboard[y][x]
+    point = list(map(int, point))
+    center = [0,0]
+    y = point[0]
+    x = point[1]
+    center[0] = y
+    center[1] = x
+    player = list[point]
 
     # 右
-    for i in range(1, 5):
+    for i in range(1,5):
         x = x + 1
-        if x < 11 and variable.chessboard[y][x] == player:
+        if list[y][x] == player and x <= 11:
             times += 1
         else:
             break
 
-    # 讓 x,y ＝ 原來的點
-    y = int(point[0])
-    x = int(point[1])
+    #讓 x,y ＝ 原來的點
+    y = point[0]
+    x = point[1]
 
-    # 左
-    for i in range(1, 5):
+    #左
+    for i in range(1,5):
         x = x - 1
-        if x >= 0 and variable.chessboard[y][x] == player:
+        if list[y][x] == player and x >= 0:
             times += 1
+            center[0] = y       #!!讓center保持在最左邊    
+            center[1] = x
         else:
             break
 
     if times == 5:
-        return 2
+        #!!center在最左邊
+        center[1] = center[1] + 2
+        return(player,2,center)
     else:
-        # 讓 x,y ＝ 原來的點
-        y = int(point[0])
-        x = int(point[1])
+    #讓 x,y ＝ 原來的點 , center ＝ 原來的點
+        y = point[0]
+        x = point[1]
+        center[0] = y
+        center[1] = x
         times = 1
 
-    # 上
-    for i in range(1, 5):
+    #上
+    for i in range(1,5):
         y = y - 1
-        if y >= 0 and variable.chessboard[y][x] == player:
+        if list[y][x] == player and y >= 0:
             times += 1
         else:
             break
 
-    # 讓 x,y ＝ 原來的點
-    y = int(point[0])
-    x = int(point[1])
+    #讓 x,y ＝ 原來的點
+    y = point[0]
+    x = point[1]
 
     # 下
-    for i in range(1, 5):
+    for i in range(1,5):
         y = y + 1
-        if y < 11 and variable.chessboard[y][x] == player:
+        if list[y][x] == player and y <= 11:
             times += 1
+            center[0] = y        #!!讓center保持在最下邊
+            center[1] = x
         else:
             break
 
     if times == 5:
-        return 1
+        #!!center在最下邊
+        center[0] = center[0] - 2
+        return(player,1,center)
     else:
-        # 讓 x,y ＝ 原來的點
-        y = int(point[0])
-        x = int(point[1])
+        #讓 x,y ＝ 原來的點 , center ＝ 原來的點
+        y = point[0]
+        x = point[1]
+        center[0] = y
+        center[1] = x
         times = 1
-
-    # 右上
-    for i in range(1, 5):
+    
+    #右上
+    for i in range(1,5):
         x = x + 1
         y = y - 1
-        if x < 11 and y >= 0 and variable.chessboard[y][x] == player:
+        if list[y][x] == player and x <= 11 and y >= 0:
             times += 1
         else:
             break
 
-    # 讓 x,y ＝ 原來的點
-    y = int(point[0])
-    x = int(point[1])
+    #讓 x,y ＝ 原來的點
+    y = point[0]
+    x = point[1]
 
-    # 左下
-    for i in range(1, 5):
+    #左下
+    for i in range(1,5):
         x = x - 1
         y = y + 1
-        if x >= 0 and y < 11 and variable.chessboard[y][x] == player:
+        if list[y][x] == player and x >= 0 and y <= 11:
             times += 1
+            center[0] = y       #!!讓center保持在最左下邊
+            center[1] = x
         else:
             break
 
     if times == 5:
-        return 4
+        #!!center在最左下邊
+        center[0] = center[0] - 2
+        center[1] = center[1] + 2
+        return(player,4,center)
     else:
-        # 讓 x,y ＝ 原來的點
-        y = int(point[0])
-        x = int(point[1])
+        #讓 x,y ＝ 原來的點 , center ＝ 原來的點
+        y = point[0]
+        x = point[1]
+        center[0] = y
+        center[1] = x
         times = 1
-
-    # 右下
-    for i in range(1, 5):
+    
+    #右下
+    for i in range(1,5):
         x = x + 1
         y = y + 1
-        if x < 11 and y < 11 and variable.chessboard[y][x] == player:
+        if list[y][x] == player and x <= 11 and y <= 11:
             times += 1
         else:
             break
 
-    # 讓 x,y ＝ 原來的點
-    y = int(point[0])
-    x = int(point[1])
+    #讓 x,y ＝ 原來的點
+    y = point[0]
+    x = point[1]
 
-    # 左上
-    for i in range(1, 5):
+    #左上
+    for i in range(1,5):
         x = x - 1
         y = y - 1
-        if x >= 0 and y >= 0 and variable.chessboard[y][x] == player:
+        if list[y][x] == player and x >= 0 and y >= 0:
             times += 1
+            center[0] = y         #!!讓center保持在最左上邊
+            center[1] = x
         else:
             break
     if times == 5:
-        return 3
+        #!!center在最左上邊
+        center[0] = center[0] + 2
+        center[1] = center[1] + 2
+        return(player,3,center)
     else:
-        return 0
+        center[0] = y
+        center[1] = x
+        return(0,0,center)
+    
+    ##ttt
 
-    ##if __name__ == "__main__":
-    interactive.init()
-    variable.chessboard1 = variable.chessboard
-    # checkwin(variable.chessboard1,variable.chessboard2)
-    # print (variable.chessboard1)
-    print(variable.chessboard1)
-    print(variable.chessboard1)
-    # print(interactive.show(variable.chessboard1))
