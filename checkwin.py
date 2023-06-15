@@ -2,7 +2,7 @@ import variable
 import interactive
 
 
-def checkwin (ll,point):
+def checkwin (point):
     y = 0
     x = 0
     player = 0
@@ -12,12 +12,12 @@ def checkwin (ll,point):
     x = int(point[1])
     center[0] = y
     center[1] = x
-    player = ll[y][x]
+    player = variable.chessboard[y][x]
 
     # 右
     for i in range(1,5):
         x = x + 1
-        if x < 11 and ll[y][x] == player:
+        if x < 11 and variable.chessboard[y][x] == player:
             times += 1
         else:
             break
@@ -30,7 +30,7 @@ def checkwin (ll,point):
     for i in range(1,5):
 
         x = x - 1
-        if x >= 0 and ll[y][x] == player:
+        if x >= 0 and variable.chessboard[y][x] == player:
             times += 1
             center[0] = y       #!!讓center保持在最左邊    
             center[1] = x
@@ -52,7 +52,7 @@ def checkwin (ll,point):
     #上
     for i in range(1,5):
         y = y - 1
-        if y >= 0 and ll[y][x] == player:
+        if y >= 0 and variable.chessboard[y][x] == player:
             times += 1
         else:
             break
@@ -64,7 +64,7 @@ def checkwin (ll,point):
     # 下
     for i in range(1,5):
         y = y + 1
-        if y < 11 and ll[y][x] == player:
+        if y < 11 and variable.chessboard[y][x] == player:
             times += 1
             center[0] = y        #!!讓center保持在最下邊
             center[1] = x
@@ -87,7 +87,7 @@ def checkwin (ll,point):
     for i in range(1,5):
         x = x + 1
         y = y - 1
-        if x < 11 and y >= 0 and ll[y][x] == player:
+        if x < 11 and y >= 0 and variable.chessboard[y][x] == player:
             times += 1
         else:
             break
@@ -100,7 +100,7 @@ def checkwin (ll,point):
     for i in range(1,5):
         x = x - 1
         y = y + 1
-        if x >= 0 and y <= 11 and ll[y][x] == player :
+        if x >= 0 and y <= 11 and list[y][x] == player:
             times += 1
             center[0] = y       #!!讓center保持在最左下邊
             center[1] = x
@@ -124,7 +124,7 @@ def checkwin (ll,point):
     for i in range(1,5):
         x = x + 1
         y = y + 1
-        if x < 11 and y < 11 and ll[y][x] == player:
+        if x < 11 and y < 11 and variable.chessboard[y][x] == player:
             times += 1
         else:
             break
@@ -137,7 +137,7 @@ def checkwin (ll,point):
     for i in range(1,5):
         x = x - 1
         y = y - 1
-        if x >= 0 and y >= 0 and ll[y][x] == player:
+        if x >= 0 and y >= 0 and variable.chessboard[y][x] == player:
             times += 1
             center[0] = y         #!!讓center保持在最左上邊
             center[1] = x
