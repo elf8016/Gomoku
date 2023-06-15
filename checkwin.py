@@ -143,6 +143,8 @@ def checkwin (point):
             center[1] = x
         else:
             break
+
+        
     if times == 5:
         #!!center在最左上邊
         center[0] = center[0] + 2
