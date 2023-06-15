@@ -100,7 +100,7 @@ def checkwin (point):
     for i in range(1,5):
         x = x - 1
         y = y + 1
-        if x >= 0 and y <= 11 and list[y][x] == player:
+        if x >= 0 and y < 11 and list[y][x] == player:
             times += 1
             center[0] = y       #!!讓center保持在最左下邊
             center[1] = x
